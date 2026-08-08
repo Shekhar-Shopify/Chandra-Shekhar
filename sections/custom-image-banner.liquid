@@ -1,0 +1,93 @@
+<div class="page-width">
+    <div class="image-outer">
+        {% for block in section.blocks %}
+            {%  case block.type %}
+                {% when 'banner-header' %}
+                    <div class="banner-header">
+                        {%  if block.settings.header_text != blank %}
+                         <h2>{{ block.settings.header_text }}</h2>
+                        {% endif %}
+                        {% if block.settings.sub_header_text != blank %}
+                            <p>{{ block.settings.sub_header_text }}</p>
+                        {% endif %}
+                        {%  if block.settings.link_url or block.settings.link_text %}
+                            <a href="{{ block.settings.link_url }}" class="banner-link">{{ block.settings.link_text }}</a>
+                        {%  endif %}
+                    </div>
+                {% when 'banner-image' %}
+                    <div class="banner-image">
+                        <img src="{{ block.settings.banner_image | image_url: width: 800 }}" alt="Banner Image" height="100%" width="100%">
+                    </div>
+                {% when 'bottom-text' %}
+                    <div class="bottom-text">
+                        <p>{{ block.settings.bottom_text }}</p>
+                    </div>
+                {% endcase %}
+            {% endfor %}
+    </div>
+</div>
+{% schema  %}
+{
+    "name":"Custom Image Banner",
+    "class": "image_banner_section_outer",
+    "settings": [
+        
+    ],
+    "blocks": [
+        {
+            "type": "banner-header",
+            "name": "Banner Header",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "header_text",
+                    "label": "Header Text"  
+                },
+                {
+                    "type": "text",
+                    "id": "sub_header_text",
+                    "label": "Sub Header Text"  
+                },
+                {
+                    "type": "url",
+                    "id": "link_url",
+                    "label": "Link URL"
+                },
+                {
+                    "type": "text",
+                    "id": "link_text",
+                    "label": "Link Text"
+                }
+            ]  
+        },
+        {
+            "type": "banner-image",
+            "name": "Banner Image",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "banner_image",
+                    "label": "Banner Image"
+                }
+            ]
+        },
+        {
+            "type": "bottom-text",
+            "name": "Bottom Text",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "bottom_text",
+                    "label": "Bottom Text"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Custom Image Banner",
+            "category": "Custom Sections"
+        }
+    ]
+}
+{% endschema %}

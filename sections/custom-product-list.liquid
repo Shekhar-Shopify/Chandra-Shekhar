@@ -1,23 +1,87 @@
-<div class="custom-product-list">
-  {% for product in collections[section.settings.collection].products %}
-    <div class="product-item">
-      <a href="{{ product.url }}">
-        <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
-        <h2>{{ product.title }}</h2>
-        <p>{{ product.price | money }}</p>
-      </a>
-    </div> 
-  {% endfor %}
+<style>
+.custom-product-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.product-item a {
+    display: block;
+}
+
+.product-item {
+    position: relative;
+}
+
+.product-item .hotspot_icon {
+    position: absolute;
+}
+
+</style>
+<div class="page-width">
+    <section-header>
+        {%  if section.settings.heading != blank %}
+            <h2 class="section-heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+    </section-header>
+    <div class="custom-product-list">
+    {% for block in section.blocks %}
+        <style>
+            .hotspot_icon.{{ block.id }}{
+                top: {{ block.settings.hotspot_position_top }}%;
+                left: {{ block.settings.hotspot_position_left }}%;
+            }
+    </style>
+        <div class="product-item">
+        <a href="{{ block.settings.product.url }}">
+            <img src="{{ block.settings.product.featured_image | image_url: width: 800 }}" alt="{{ block.settings.product.title }}" height="100%" width="100%">
+        </a>
+        <span class="hotspot_icon {{ block.id }}"> {% render 'icons-plus' %} </span>
+        </div> 
+    {% endfor %}
+    </div>
 </div>
 {% schema %}
   {
     "name": "Custom Product List",
-    "class":"custom-product-list",
+    "class":"custom-product-list-outer",
     "settings": [
         {
-            "type": "collection",
-            "id": "collection",
-            "label": "Select Collection"
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        }
+    ],
+    "blocks": [
+        {
+            "name": "Produc Grid",
+            "type": "product_grid",
+            "settings": [
+                {
+                "type": "product",
+                "id": "product",
+                "label": "Select Product",
+            },
+            {
+                    "type": "range",
+                    "id": "hotspot_position_top",
+                    "label": "Hotspot Position Top (%)",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "default": 50,
+                    "unit": "%", 
+            },
+            {
+                "type": "range",
+                "id": "hotspot_position_left",
+                "label": "Hotspot Position Left (%)",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "default": 50,
+                "unit": "%", 
+            }
+            ]
         }
     ],
     "presets": [
