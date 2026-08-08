@@ -50,6 +50,7 @@
     },
     "featured_collection": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
         "collection": "all",
         "products_to_show": 8,
@@ -80,7 +81,7 @@
       "type": "custom-product-list",
       "name": "Custom Product List",
       "settings": {
-        "collection": "frontpage"
+        "collection": "all-producta"
       }
     }
   },
