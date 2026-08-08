@@ -1,22 +1,108 @@
-<div class="page-width">
-    <div class="image-outer">
+    <style>
+        .banner-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .banner-header .banner-image {
+            height: auto;
+            max-width: 154px;
+            display: flex;
+        }
+        .image-outer.section-{{ section.id }} {
+            background: {{ section.settings.background_color }};
+        }
+        .section-{{ section.id }} .banner-sub-header {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 13.42px;
+            letter-spacing: 0px;
+            text-align: center;
+            margin: 0;
+        }
+        .section-{{ section.id }} .banner-link.yellow-btn {
+            background: #FFF544;
+            color: #000;
+            text-decoration: none;
+            padding: 11.33px 41px;
+            margin-block: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20.48px;
+            letter-spacing: 0px;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+        }
+        .section-{{ section.id }} .banner-link.yellow-btn::before {
+            background: #000;
+            content: "";
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 0;
+        }
+        .section-{{ section.id }} .banner-link.yellow-btn:hover::before {
+            width: 100%;
+            transition: all 0.3s ease-in-out;
+        }
+        .section-{{ section.id }} .banner-link.yellow-btn:hover{
+            color: #fff;
+        }
+        .image-banner_text_wrapper .banner-image {
+            display: flex;  
+        }
+        .bottom-text p {
+            margin: 0;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 13.42px;
+            letter-spacing: 0px;
+            text-align: center;
+            padding: 10px 0;
+            color: #000000;
+            margin: 0px;
+        }
+    </style>
+    <div class="image-outer section-{{ section.id }}">
         {% for block in section.blocks %}
             {%  case block.type %}
                 {% when 'banner-header' %}
-                    <div class="banner-header">
-                        {%  if block.settings.header_text != blank %}
+                    <div class="banner-header page-width">
+                        {%  if block.settings.image != blank %}
+                           <div class="banner-image">
+                                <img src="{{ block.settings.image | image_url: width: 800 }}" alt="Banner Image" height="100%" width="100%">
+                            </div>
+                        {%  elsif block.settings.header_text != blank %}
                          <h2>{{ block.settings.header_text }}</h2>
                         {% endif %}
                         {% if block.settings.sub_header_text != blank %}
-                            <p>{{ block.settings.sub_header_text }}</p>
+                            <p class="banner-sub-header">{{ block.settings.sub_header_text }}</p>
                         {% endif %}
                         {%  if block.settings.link_url or block.settings.link_text %}
-                            <a href="{{ block.settings.link_url }}" class="banner-link">{{ block.settings.link_text }}</a>
+                            <a href="{{ block.settings.link_url }}" class="banner-link yellow-btn">{{ block.settings.link_text }} {%  render 'icons-arrow' %}</a>
                         {%  endif %}
                     </div>
                 {% when 'banner-image' %}
-                    <div class="banner-image">
-                        <img src="{{ block.settings.banner_image | image_url: width: 800 }}" alt="Banner Image" height="100%" width="100%">
+                    <div class="image-banner_text_wrapper">
+                        <div class="banner-image">
+                            <img src="{{ block.settings.banner_image | image_url: width: 800 }}" alt="Banner Image" height="100%" width="100%">
+                        </div>
+                        <div class="banner-content">
+                            {%  if block.settings.banner-heading != blank %}
+                                <h2 class="banner-heading">{{ block.settings.banner-heading }}</h2>
+                            {% endif %}
+                            {% if block.settings.banner-sub-heading != blank %}
+                                <p class="banner-sub-heading">{{ block.settings.banner-sub-heading }}</p>
+                            {% endif %}
+                            {% if block.settings.banner-link != blank and block.settings.banner-link-text != blank %}
+                                <a href="{{ block.settings.banner-link }}" class="banner-link">{{ block.settings.banner-link-text }}</a>
+                            {% endif %}
+                        </div>
                     </div>
                 {% when 'bottom-text' %}
                     <div class="bottom-text">
@@ -25,13 +111,17 @@
                 {% endcase %}
             {% endfor %}
     </div>
-</div>
 {% schema  %}
 {
     "name":"Custom Image Banner",
     "class": "image_banner_section_outer",
     "settings": [
-        
+        {
+            "type": "color",
+            "id": "background_color",
+            "label": "Background Color",
+            "default": "#F5F5F5"
+        }
     ],
     "blocks": [
         {
@@ -42,6 +132,11 @@
                     "type": "text",
                     "id": "header_text",
                     "label": "Header Text"  
+                },
+                {
+                "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
                 },
                 {
                     "type": "text",
@@ -68,6 +163,26 @@
                     "type": "image_picker",
                     "id": "banner_image",
                     "label": "Banner Image"
+                },
+                {
+                    "type": "text",
+                    "id": "banner-heading",
+                    "label": "Banner Heading"
+                },
+                {
+                    "type": "text",
+                    "id": "banner-sub-heading",
+                    "label": "Banner Sub Heading"
+                },
+                {
+                    "type": "url",
+                    "id": "banner-link",
+                    "label": "Banner Link"
+                },
+                {
+                    "type": "text",
+                    "id": "banner-link-text",
+                    "label": "Banner Link Text"
                 }
             ]
         },
