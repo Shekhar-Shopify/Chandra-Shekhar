@@ -73,6 +73,64 @@
     },
     "custom_product_list_yjRmzB": {
       "type": "custom-product-list",
+      "blocks": {
+        "product_grid_NJN489": {
+          "type": "product_grid",
+          "settings": {
+            "product": "black-leather-bag",
+            "hotspot_position_top": 50,
+            "hotspot_position_left": 50
+          }
+        },
+        "product_grid_JBHGJM": {
+          "type": "product_grid",
+          "settings": {
+            "product": "blue-silk-tuxedo",
+            "hotspot_position_top": 50,
+            "hotspot_position_left": 50
+          }
+        },
+        "product_grid_aUgFiB": {
+          "type": "product_grid",
+          "settings": {
+            "product": "chequered-red-shirt",
+            "hotspot_position_top": 50,
+            "hotspot_position_left": 50
+          }
+        },
+        "product_grid_pFiMKm": {
+          "type": "product_grid",
+          "settings": {
+            "product": "classic-leather-jacket",
+            "hotspot_position_top": 50,
+            "hotspot_position_left": 50
+          }
+        },
+        "product_grid_hKYiqF": {
+          "type": "product_grid",
+          "settings": {
+            "product": "classic-varsity-top",
+            "hotspot_position_top": 50,
+            "hotspot_position_left": 50
+          }
+        },
+        "product_grid_ALUhyW": {
+          "type": "product_grid",
+          "settings": {
+            "product": "dark-denim-top",
+            "hotspot_position_top": 50,
+            "hotspot_position_left": 50
+          }
+        }
+      },
+      "block_order": [
+        "product_grid_NJN489",
+        "product_grid_JBHGJM",
+        "product_grid_aUgFiB",
+        "product_grid_pFiMKm",
+        "product_grid_hKYiqF",
+        "product_grid_ALUhyW"
+      ],
       "name": "Custom Product List",
       "settings": {
         "heading": ""
