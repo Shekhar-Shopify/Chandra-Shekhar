@@ -6,23 +6,23 @@
         <h2>{{ product.title }}</h2>
         <p>{{ product.price | money }}</p>
       </a>
-    </div>
+    </div> 
   {% endfor %}
 </div>
 {% schema %}
   {
-    "name": "Custom Product List",,
-    "class": "custom-product-list-wrapper",
+    "name": "Custom Product List",
+    "class":"custom-product-list",
     "settings": [
-      {
-        "type": "collection",
-        "id": "collection",
-        "label": "Collection"
-      }
+        {
+            "type": "collection",
+            "id": "collection",
+            "label": "Select Collection"
+        }
     ],
     "presets": [
         {
-            "name": "Custom Product List"
+           "name":"Custom Product List",   
         }
     ]
   }
