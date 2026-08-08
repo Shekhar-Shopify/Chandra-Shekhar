@@ -9,44 +9,36 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "custom_image_banner_8H9MKe": {
+      "type": "custom-image-banner",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "banner_header_cdRwrR": {
+          "type": "banner-header",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "header_text": "TISSO VISSION",
+            "sub_header_text": "Find the ideal gift for your loved ones.",
+            "link_url": "#",
+            "link_text": "Choose Gift"
           }
         },
-        "button": {
-          "type": "buttons",
+        "banner_image_JWJFci": {
+          "type": "banner-image",
+          "settings": {}
+        },
+        "bottom_text_83wqmX": {
+          "type": "bottom-text",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "bottom_text": ""
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "banner_header_cdRwrR",
+        "banner_image_JWJFci",
+        "bottom_text_83wqmX"
       ],
-      "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
+      "name": "Custom Image Banner",
+      "settings": {}
     },
     "featured_collection": {
       "type": "featured-collection",
@@ -81,12 +73,12 @@
       "type": "custom-product-list",
       "name": "Custom Product List",
       "settings": {
-        "collection": "all-producta"
+        "heading": ""
       }
     }
   },
   "order": [
-    "image_banner",
+    "custom_image_banner_8H9MKe",
     "featured_collection",
     "custom_product_list_yjRmzB"
   ]
