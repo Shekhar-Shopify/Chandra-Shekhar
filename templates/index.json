@@ -23,7 +23,9 @@
         },
         "banner_image_JWJFci": {
           "type": "banner-image",
-          "settings": {}
+          "settings": {
+            "banner_image": "shopify://shop_images/without-text.png"
+          }
         },
         "bottom_text_83wqmX": {
           "type": "bottom-text",
