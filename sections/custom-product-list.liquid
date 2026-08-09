@@ -6,8 +6,13 @@
 }
 .product-item a {
     display: block;
+    position: relative;
+    padding-top: 100%;
 }
-
+.product-item a img {
+    position: absolute;
+    inset: 0;
+}
 .product-item {
     position: relative;
 }
@@ -38,11 +43,12 @@
         <a href="{{ block.settings.product.url }}">
             <img src="{{ block.settings.product.featured_image | image_url: width: 800 }}" alt="{{ block.settings.product.title }}" height="100%" width="100%">
         </a>
-        <span class="hotspot_icon {{ block.id }}"> {% render 'icons-plus' %} </span>
+        <span class="hotspot_icon {{ block.id }} quick_view_btn" data-product-handle="{{ block.settings.product.handle }}"> {% render 'icons-plus' %} </span>
         </div> 
     {% endfor %}
     </div>
 </div>
+<script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
 {% schema %}
   {
     "name": "Custom Product List",

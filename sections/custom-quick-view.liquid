@@ -1,0 +1,63 @@
+<div class="quick-view_section">
+    <div class="quick-view_content">
+        <div class="image_content_wrapper">
+            <div class="image_Wrapper">
+                <img src="{{ product.featured_image | image_url: width: 500 }}" alt="" class="quick-view_image" height="140" width="120"/>
+            </div>
+            <div class="product_content_wrapper">
+                <h3 class="quick-view_product_title">{{ product.title }}</h3>
+                <p class="quick-view_product_price">{{ product.price | money_with_currency }}</p>
+                <div class="quick-view_product_description">{{ product.description | truncate: 80 }}</div>
+            </div>
+        </div>
+        <div class="quick-view_action_btn">
+            {% form 'product', product, class: 'quick-view-form' %}
+                <script type="application/json" class="quick-view-product-json">
+                    {{ product | json }};
+                </script>
+                <div class="Option_wrapper">
+                    {% for option in product.options_with_values %}
+                    {%  if option.name =='Color' or option.name =='color' or option.name =='COLOR' %}
+                       <div class="quick-view-option radio">
+                        <label for="quick-view-option-{{ option.name | handleize }}">{{ option.name }}</label>
+                        <ul id="quick-view-option-{{ option.name | handleize }}" name="options[{{ option.name }}]">
+                            {% for value in option.values %}
+                                <li class="quick-view-option-value">
+                                    <input type="radio" name="options[{{ option.name }}]" value="{{ value | escape }}" id="quick-view-option-{{ option.name | handleize }}-{{ value | handleize }}" {% if forloop.first %}checked{% endif %}>
+                                    <label for="quick-view-option-{{ option.name | handleize }}-{{ value | handleize }}" style="border-left: 6px solid {{ value | handleize }};">{{ value }}</label>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                       
+                    </div>
+                    {%  endif %}
+                    {%  if option.name =='Size' or option.name =='size' or option.name =='SIZE' %}
+                       <div class="quick-view-option dropdown">
+                        <label for="quick-view-option-{{ option.name | handleize }}">{{ option.name }}</label>
+                        <div class="select-wrapper">
+                            <button type="button" class="dropdown-btn" value="">{{ 'Choose your size' }} 
+                            <span class="dropdown-arrow">
+                                <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.06067 1.06067L7.06067 7.06067L13.0607 1.06067" stroke="black" stroke-width="1.5" stroke-linecap="square"/>
+                            </svg>
+                            </span>
+                        </button>
+                        <ul id="quick-view-option-{{ option.name | handleize }}" name="options[{{ option.name }}]" class="dropdown-list hidden">
+                            {% for value in option.values %}
+                                <li>
+                                    <button type="button" class="dropdown-btn option" value="{{ value | escape }}" data-value="{{ value | escape }}">{{ value }}</button>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <input type="hidden" name="options[{{ option.name }}]" value="" class="selected-size-input">
+                        </div>
+                    </div>
+                    {%  endif %}
+                    {% endfor %}
+                </div>
+                <input type="hidden" name="id" value="" class="selected-variant-id">
+                <button type="submit" class="quick-view_add_to_cart_btn">Add to Cart</button>
+            {% endform %}
+        </div>
+    </div>
+</div>

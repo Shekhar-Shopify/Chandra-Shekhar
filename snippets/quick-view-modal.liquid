@@ -1,0 +1,184 @@
+<div class="QuickViewModal hidden" id="QuickViewModal">
+    <div class="QuickViewModal__content">
+        <div class="QuickViewModal__close">
+            <span class="QuickViewModal__close-icon">
+                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.24219 4.24279L12.7275 12.7281" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+                    <path d="M4.24219 12.7278L12.7275 4.24249" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </div>
+        <div class="QuickViewModal__product-content">
+            <!-- Product content will be loaded here -->
+        </div>
+    </div>
+</div>
+<style>
+    div#QuickViewModal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+} 
+span.QuickViewModal__close-icon {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    cursor: pointer;
+}
+.QuickViewModal__content {
+    width: 311px;
+    background: #fff;
+    height: max-content;
+    padding: 36px 17px 25px;
+    position: relative;
+    box-shadow: 0px 2px 4px 0px #00000033;
+}
+.select-wrapper{
+    position: relative;
+}
+.quick_view_btn{
+    cursor: pointer;
+}
+.image_content_wrapper img {
+    object-fit: cover;
+}
+.image_content_wrapper {
+    display: flex;
+    gap: 8px;
+}
+.product_content_wrapper {
+    width: calc(100% - 128px);
+}
+.quick-view_product_title {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    margin: 0;
+    margin-top: 13px;
+    color: #000000;
+}
+p.quick-view_product_price {
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    font-family: "Lustria", serif;
+    color: #000000;
+}
+.quick-view_product_description p{
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 110.00000000000001%;
+    letter-spacing: -1%;
+    color: #000;
+    margin-bottom: 0;
+    margin-top: 12px;
+}
+.Option_wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.Option_wrapper ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    margin-top: 6px;
+}
+ul#quick-view-option-color {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+ul#quick-view-option-color li {
+    border: 1px solid;
+}
+
+ul#quick-view-option-color input {
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    margin: 0;
+}
+li {
+    position: relative;
+}
+ul#quick-view-option-color li label {
+    display: block;
+    width: 100%;
+    padding:10px 8px;
+}
+button.dropdown-btn {
+    border: 0.5px solid #000000;
+    background: #fff;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -2%;
+    vertical-align: middle;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.quick-view-option.dropdown label {
+    display: block;
+    margin-bottom: 6px;
+}
+.quick-view-option.dropdown{
+    margin-top:11px;
+}
+ul#quick-view-option-color li input:checked+label {
+    background: #000;
+    color: #fff;
+}
+ul#quick-view-option-color li:first-child {
+    border-right: none;
+}
+.quick-view-option.dropdown ul {
+    margin-top: 0px;
+    border: 0.5px solid #000000;
+    border-top: 0;
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    z-index: 1;
+    left: 0;
+    right: 0;
+}
+.dropdown-btn.option{
+  border: 0;
+  background: #fff;
+  text-align: center;
+  display: block;
+}
+.dropdown-btn.option:hover{
+  background: #000;
+  color: #fff;
+}
+button.quick-view_add_to_cart_btn {
+    margin-top: 50px;
+    background: #000;
+    color: #fff;
+    border: none;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20.48px;
+    letter-spacing: 0px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    padding: 12px;
+    width: 100%;
+}
+</style>
