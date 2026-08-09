@@ -12,6 +12,8 @@
 .product-item a img {
     position: absolute;
     inset: 0;
+    object-fit: cover;
+    width: 100%;
 }
 .product-item {
     position: relative;
@@ -23,6 +25,12 @@
 #shopify-section-{{ section.id }} {
     padding-top: {{  section.settings.padding_top }}px;
     padding-bottom: {{  section.settings.padding_bottom }}px;
+}
+@media (max-width: 767px) {
+    .custom-product-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4px;
+    }
 }
 </style>
 <div class="page-width">

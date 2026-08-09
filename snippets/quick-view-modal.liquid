@@ -139,8 +139,24 @@ button.dropdown-btn {
     margin-top:11px;
 }
 ul#quick-view-option-color li input:checked+label {
-    background: #000;
     color: #fff;
+    position: relative;
+    z-index: 1;
+}
+ul#quick-view-option-color li input:checked+label::before {
+    width: 100%;
+    z-index: -1;
+}
+ul#quick-view-option-color li input +label::before {
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    content: '';
+    background: #000;
+    transition: 0.2s ease-in-out;
 }
 ul#quick-view-option-color li:first-child {
     border-right: none;

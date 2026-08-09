@@ -13,7 +13,7 @@
         <div class="quick-view_action_btn">
             {% form 'product', product, class: 'quick-view-form' %}
                 <script type="application/json" class="quick-view-product-json">
-                    {{ product | json }};
+                    {{ product | json }}
                 </script>
                 <div class="Option_wrapper">
                     {% for option in product.options_with_values %}
@@ -35,7 +35,7 @@
                        <div class="quick-view-option dropdown">
                         <label for="quick-view-option-{{ option.name | handleize }}">{{ option.name }}</label>
                         <div class="select-wrapper">
-                            <button type="button" class="dropdown-btn" value="">{{ 'Choose your size' }} 
+                            <button type="button" class="dropdown-btn" value=""><span class="dropdown-text-lable"> {{ 'Choose your size' }} </span>
                             <span class="dropdown-arrow">
                                 <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1.06067 1.06067L7.06067 7.06067L13.0607 1.06067" stroke="black" stroke-width="1.5" stroke-linecap="square"/>
@@ -55,7 +55,12 @@
                     {%  endif %}
                     {% endfor %}
                 </div>
-                <input type="hidden" name="id" value="" class="selected-variant-id">
+                <input
+    type="hidden"
+    name="id"
+    class="selected-variant-id"
+    value="{{ product.selected_or_first_available_variant.id }}"
+>
                 <button type="submit" class="quick-view_add_to_cart_btn">Add to Cart</button>
             {% endform %}
         </div>
