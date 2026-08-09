@@ -109,6 +109,14 @@
         .section-{{ section.id }} .content_iiner {
             max-width: {{ section.settings.banner_content_width }}px;
         }
+        .for-mobile{
+          display:none;
+        }
+        @media (max-width:767px){
+            .for-mobile{
+                display:block;
+            }
+        }
     </style>
     <div class="image-outer section-{{ section.id }}">
         {% for block in section.blocks %}
@@ -136,12 +144,17 @@
                         </div>
                         <div class="banner-content alignment-{{ block.settings.banner_content_alignment }} page-width">
                             <div class="content_iiner section-{{ section.id }}">
-                               {%  if block.settings.banner-heading != blank %}
-                                    <h2 class="banner-heading">{{ block.settings.banner-heading }}</h2>
+                               {%  if block.settings.banner_heading != blank %}
+                                    <h2 class="banner-heading">{{ block.settings.banner_heading }}</h2>
                                {% endif %}
-                               {% if block.settings.banner-sub-heading != blank %}
-                                <p class="banner-sub-heading">{{ block.settings.banner-sub-heading }}</p>
-                            {% endif %}
+                               {% if block.settings.banner_sub_heading != blank %}
+                                <p class="banner-sub-heading">{{ block.settings.banner_sub_heading }}</p>
+                                {% endif %}
+                                {%  if block.settings.banner_sub_heading_mobile != blank %}
+                                <p class="mobile-banner-sub-heading for-mobile">{{ block.settings.banner_sub_heading_mobile }}</p>
+                                {%  else %}
+                                    <p class="mobile-banner-sub-heading for-mobile">{{ block.settings.banner_sub_heading }}</p>
+                                {% endif %}
                             {% if block.settings.banner-link != blank and block.settings.banner-link-text != blank %}
                                 <a href="{{ block.settings.banner-link }}" class="banner-link">{{ block.settings.banner-link-text }}</a>
                             {% endif %}
@@ -220,15 +233,25 @@
                 },
                 {
                     "type": "text",
-                    "id": "banner-heading",
+                    "id": "banner_heading",
                     "label": "Banner Heading",
                     "default": "The Gift Guide"  
                 },
                 {
                     "type": "text",
-                    "id": "banner-sub-heading",
+                    "id": "banner_sub_heading",
                     "label": "Banner Sub Heading",
                     "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+                },
+                {
+                    "type": "header",
+                    "content": "Mobile Data",
+                },
+                {
+                    "type": "text",
+                    "id":"banner_sub_heading_mobile",
+                    "label": "Mobile Sub Heading",
+                    "default":"Discover Joy: Your Ultimate Holiday Gift Destination."
                 },
                 {
                     "type": "url",
