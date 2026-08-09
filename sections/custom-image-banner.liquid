@@ -36,6 +36,7 @@
             letter-spacing: 0px;
             position: relative;
             transition: all 0.3s ease-in-out;
+            z-index: 2
         }
         .section-{{ section.id }} .banner-link.yellow-btn::before {
             background: #000;
@@ -45,10 +46,17 @@
             position: absolute;
             top: 0;
             width: 0;
+            z-index: -1;
         }
         .section-{{ section.id }} .banner-link.yellow-btn:hover::before {
             width: 100%;
             transition: all 0.3s ease-in-out;
+        }
+        .section-{{ section.id }} .banner-link.yellow-btn svg path{
+            transition: all 0.3s ease-in-out;
+        }
+        .section-{{ section.id }} .banner-link.yellow-btn:hover svg path{
+            fill:#fff
         }
         .section-{{ section.id }} .banner-link.yellow-btn:hover{
             color: #fff;
@@ -112,9 +120,64 @@
         .for-mobile{
           display:none;
         }
+        .image-banner_text_wrapper a.banner-link {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20.48px;
+            letter-spacing: 0px;
+            text-align: center;
+            vertical-align: middle;
+            text-transform: uppercase;
+            color: #fff;
+            background: #000;
+            padding: 14px;
+            display: flex;
+            max-width: 220px;
+            margin-top: 50px;
+            text-decoration: none;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            z-index: 2;
+             transition: all 0.3s ease-in-out;
+        }
+        .image-banner_text_wrapper a.banner-link svg path {
+            fill: #fff;
+
+        }
+        .image-banner_text_wrapper a.banner-link::before {
+            position: absolute;
+            content: '';
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background: #FFF544;
+            z-index: -1;
+            transition: all 0.3s ease-in-out;
+            width:0
+        }
+        .image-banner_text_wrapper a.banner-link:hover{
+            color:#000;
+        }
+        .image-banner_text_wrapper a.banner-link:hover::before {
+            width: 100%;
+        }
+        .image-banner_text_wrapper a.banner-link:hover svg path{
+          fill:#000;
+        }
         @media (max-width:767px){
+            .for-desktop{
+                display: none;
+            }
             .for-mobile{
                 display:block;
+            }
+            .banner-header.page-width {
+                display: none;
+            }
+            .image-banner_text_wrapper .banner-content{
+                position: unset;
             }
         }
     </style>
@@ -134,11 +197,11 @@
                             <p class="banner-sub-header">{{ block.settings.sub_header_text }}</p>
                         {% endif %}
                         {%  if block.settings.link_url or block.settings.link_text %}
-                            <a href="{{ block.settings.link_url }}" class="banner-link yellow-btn">{{ block.settings.link_text }} {%  render 'icons-arrow' %}</a>
+                            <a href="{{ block.settings.link_url }}" class="banner-link yellow-btn">{{ block.settings.link_text }} {% render 'icons-arrow' %}</a>
                         {%  endif %}
                     </div>
                 {% when 'banner-image' %}
-                    <div class="image-banner_text_wrapper">
+                    <div class="image-banner_text_wrapper for-deskop">
                         <div class="banner-image">
                             <img src="{{ block.settings.banner_image | image_url: width: 800 }}" alt="Banner Image" height="100%" width="100%">
                         </div>
@@ -148,18 +211,27 @@
                                     <h2 class="banner-heading">{{ block.settings.banner_heading }}</h2>
                                {% endif %}
                                {% if block.settings.banner_sub_heading != blank %}
-                                <p class="banner-sub-heading">{{ block.settings.banner_sub_heading }}</p>
-                                {% endif %}
-                                {%  if block.settings.banner_sub_heading_mobile != blank %}
-                                <p class="mobile-banner-sub-heading for-mobile">{{ block.settings.banner_sub_heading_mobile }}</p>
-                                {%  else %}
-                                    <p class="mobile-banner-sub-heading for-mobile">{{ block.settings.banner_sub_heading }}</p>
+                                <p class="banner-sub-heading for-desktop">{{ block.settings.banner_sub_heading }}</p>
                                 {% endif %}
                             {% if block.settings.banner-link != blank and block.settings.banner-link-text != blank %}
-                                <a href="{{ block.settings.banner-link }}" class="banner-link">{{ block.settings.banner-link-text }}</a>
+                                <a href="{{ block.settings.banner-link }}" class="banner-link">{{ block.settings.banner-link-text }} {% render 'icons-arrow' %}</a>
                             {% endif %}
                             </div>
                         </div>
+                    </div>
+                    <div class="for-mobile banner_text_wrapper">
+                       <div class="content_wraaper">
+                            <h2 class="heading">
+                                {{ block.settings.mobile_heading }}
+                            </h2>
+                            <p>{{ block.settings.mobile_subheading }}</p>
+                        </div>
+                        {%  if block.settings.mobile_image != blank %}
+                            <div class="image_wrapper">
+                                <img scr="{{ block.settings.mobile_image | image_url:width:400 }}" height="" width="" alt="{{ block.settings.mobile_image.alt }}">
+                               <a href="{{ block.settings.banner-link }}" class="banner-link">{{ block.settings.banner-link-text }} {% render 'icons-arrow' %}</a>
+                            </div>
+                        {% endif %}
                     </div>
                 {% when 'bottom-text' %}
                     <div class="bottom-text">
@@ -244,16 +316,6 @@
                     "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
                 },
                 {
-                    "type": "header",
-                    "content": "Mobile Data",
-                },
-                {
-                    "type": "text",
-                    "id":"banner_sub_heading_mobile",
-                    "label": "Mobile Sub Heading",
-                    "default":"Discover Joy: Your Ultimate Holiday Gift Destination."
-                },
-                {
                     "type": "url",
                     "id": "banner-link",
                     "label": "Banner Link"
@@ -286,6 +348,25 @@
                             "label": "Bottom Right"
                         }
                     ]
+                },
+                {
+                    "type": "header",
+                    "content": "Mobile Content"
+                },
+                {
+                    "type": "text",
+                    "id":"mobile_heading",
+                    "label":"Mobile Heading"
+                },
+                {
+                    "type": "text",
+                    "id":"mobile_subheading",
+                    "label":"Mobile Heading"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mobile_image",
+                    "label": "Mobile Image"
                 }
             ]
         },
