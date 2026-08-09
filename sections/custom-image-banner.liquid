@@ -179,6 +179,56 @@
             .image-banner_text_wrapper .banner-content{
                 position: unset;
             }
+           .section-{{ section.id }} .content_wraaper {
+                background: #fff;
+                padding: 50px 20px 12px;
+            }  
+            .for-mobile.banner_text_wrapper h2.heading {
+                font-weight: 500;
+                font-size: 30px;
+                line-height: 100%;
+                letter-spacing: 0px;
+                text-align: center;
+                vertical-align: middle;
+                margin: 0;
+            }
+            .content_wraaper p {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 130%;
+                letter-spacing: 0px;
+                text-align: center;
+            }
+            .for-mobile.banner_text_wrapper{
+                position: relative;
+            }
+            .for-mobile.banner_text_wrapper a.banner-link {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 10px;
+                font-size: 16px;
+                line-height: 20.48px;
+                letter-spacing: 0px;
+                text-align: center;
+                vertical-align: middle;
+                text-transform: uppercase;
+                color: #fff;
+                background: #000;
+                padding: 14px;
+                display: flex;
+                max-width: 220px;
+                margin-top: 50px;
+                text-decoration: none;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                z-index: 2;
+                transition: all 0.3s ease-in-out;
+            }
+            .for-mobile.banner_text_wrapper a.banner-link svg path {
+                fill: #fff;
+            }       
         }
     </style>
     <div class="image-outer section-{{ section.id }}">
@@ -201,7 +251,7 @@
                         {%  endif %}
                     </div>
                 {% when 'banner-image' %}
-                    <div class="image-banner_text_wrapper for-deskop">
+                    <div class="image-banner_text_wrapper for-desktop">
                         <div class="banner-image">
                             <img src="{{ block.settings.banner_image | image_url: width: 800 }}" alt="Banner Image" height="100%" width="100%">
                         </div>
@@ -228,14 +278,17 @@
                         </div>
                         {%  if block.settings.mobile_image != blank %}
                             <div class="image_wrapper">
-                                <img scr="{{ block.settings.mobile_image | image_url:width:400 }}" height="" width="" alt="{{ block.settings.mobile_image.alt }}">
+                                <img src="{{ block.settings.mobile_image | image_url: width: 400 }}" height="" width="" alt="{{ block.settings.mobile_image.alt }}">
                                <a href="{{ block.settings.banner-link }}" class="banner-link">{{ block.settings.banner-link-text }} {% render 'icons-arrow' %}</a>
                             </div>
                         {% endif %}
                     </div>
                 {% when 'bottom-text' %}
-                    <div class="bottom-text">
+                    <div class="bottom-text for-desktop">
                         <p>{{ block.settings.bottom_text }}</p>
+                    </div>
+                     <div class="bottom-text for-mobile">
+                        <p>{{ block.settings.bottom_text_mobile }}</p>
                     </div>
                 {% endcase %}
             {% endfor %}
@@ -377,6 +430,15 @@
                 {
                     "type": "text",
                     "id": "bottom_text",
+                    "label": "Bottom Text"
+                },
+                {
+                    "type": "header",
+                    "content": "Mobile content"
+                },
+                {
+                    "type": "text",
+                    "id": "bottom_text_mobile",
                     "label": "Bottom Text"
                 }
             ]
