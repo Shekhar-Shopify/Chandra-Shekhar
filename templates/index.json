@@ -24,12 +24,15 @@
         "banner_image_JWJFci": {
           "type": "banner-image",
           "settings": {
-            "banner_image": "shopify://shop_images/without-text.png",
-            "banner-heading": "The Gift Guide",
-            "banner-sub-heading": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
+            "banner_image": "shopify://shop_images/New_Project.webp",
+            "banner_heading": "The Gift Guide",
+            "banner_sub_heading": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
             "banner-link": "#",
             "banner-link-text": "Shop NOW",
-            "banner_content_alignment": "bottom-left"
+            "banner_content_alignment": "bottom-left",
+            "mobile_heading": "The Gift Guide",
+            "mobile_subheading": "Discover Joy: Your Ultimate Holiday Gift Destination.",
+            "mobile_image": "shopify://shop_images/Frame.png"
           }
         },
         "bottom_text_83wqmX": {
